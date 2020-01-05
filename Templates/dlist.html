@@ -1,0 +1,24 @@
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb
+{%for i in k%}
+{{i.title}}
+{%endfor%}
+
+<div class="card-body text-center">
+    <!--Category & Title-->
+    <a href="{% url 'product-url'%}" class="grey-text">
+      <h5>{{item.get_catigory_display}}</h5>
+    </a>
+    <h5>
+      <strong>
+        <a href="{% url 'product-url'%}" class="dark-grey-text">
+          {{item.title}}
+          <span class="badge badge-pill {{item.get_label_display}}-color">NEW</span>
+         
+        </a>
+      </strong>
+    </h5>
+    <h4 class="font-weight-bold blue-text">
+      <strong>$ {{item.price}}</strong>
+    </h4>
+
+  </div>
