@@ -20,15 +20,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
+app_name = "mainapp"
+
 urlpatterns =[
     path('admin/', admin.site.urls),
     path('',views.HomeView.as_view(), name='item-list-url'),
     path('product/<int:pk>',views.ItemDetailView.as_view(), name="product-url"),
     path('checkout',views.CheckoutListView.as_view(),name = 'checkout-url'),
     path('comment',views.add_comment,name = 'comment-url'),
-    path('add-to-cart/<int:pk>',views.add_to_cart, name = "add-to-cart-url"),
+    path('add-to-cart/<int:pk>',views.add_to_cart,name = "add-to-cart-url"),
     path('remove-from-cart/<int:pk>',views.remove_from_cart, name = "remove-url"),
-
+    path('order-summary',views.OrderSummaryDetailView.as_view(),name="summary-url"),
+    path('remove-singel-item/<int:pk>',views.remove_singel_item_from_cart,name = 'remove-singel-item-url'),
+    
     path('list',views.list.as_view(),name = 'list'),
     path('list/<int:pk>',views.detail.as_view(),name = 's_details'),
 

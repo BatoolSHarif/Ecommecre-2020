@@ -35,7 +35,7 @@ class Item (models.Model):
     price = models.FloatField(default=0.0)
     catigory = models.CharField (choices= CATIGORY_CHOICES, max_length = 2, default="S")
     label = models.CharField (choices= LABEL_CHOICES, max_length = 2, default="P")
-    
+
     def get_absolute_url(self):
         return reverse('product-url', kwargs={'pk': self.pk})
  
@@ -44,7 +44,8 @@ class Item (models.Model):
 
     def get_remove_from_cart_url(self):
         return reverse('remove-url', kwargs={'pk': self.pk})    
-        
+
+    
     def __str__(self):
         return self.title
     
@@ -52,8 +53,15 @@ class OrderItem (models.Model):
     item = models.ForeignKey(to='Item',on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1)
+    
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
+
+    def total_item_price(self):
+        return self.quantity * self.item.price
+        
+        
+    
 
 class Order (models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
@@ -61,6 +69,18 @@ class Order (models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
+
+    def final_price(self):
+        total = 0
+        for order_item in self.items.all():
+            total = total + order_item.total_item_price()
+        return total
+    
+    def get_singel_item_remove_from_cart_url(self):
+        return reverse('remove-singel-item-url', kwargs={'pk': self.pk}) 
+    
+    def get_add_to_cart_url(self):
+        return reverse('add-to-cart-url', kwargs={'pk': self.pk})
 
 class Comment(models.Model):
     name = models.CharField(max_length=80)
@@ -70,3 +90,4 @@ class Comment(models.Model):
     def __str__(self):
         return  self.name
 
+    

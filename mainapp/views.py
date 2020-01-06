@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.urls import reverse_lazy,reverse
-from django.views.generic import CreateView,ListView,DeleteView,DetailView
+from django.views.generic import CreateView,ListView,DeleteView,DetailView,View
 from .models import Item, Order , OrderItem , Comment
 from .forms import CommentForm
 from django.utils import timezone
@@ -62,21 +62,46 @@ def add_to_cart(request,pk):
             return redirect('product-url',pk=pk)
 
 
-def add_comment (request):
-        if request.method == 'POST':
-            form = CommentForm(request.POST)
-            if form.is_valid():
+def add_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
                 form.save()
-        else:
+    else:
             form = CommentForm ()
-        context = {'form':form}
-        context ['comment'] = Comment.objects.all()
-        context ['items'] = Item.objects.all()
-        return render (request,'product-page.html',context)
+    context = {'form':form}
+    context ['comment'] = Comment.objects.all()
+    context ['items'] = Item.objects.all()
+    return render (request,'product-page.html',context=context)
 
 
 
 def remove_from_cart(request, pk):
+    item_id = Item.objects.get(pk=pk)
+    order_qs = Order.objects.filter(ordered=False)
+    if order_qs.exists():
+        order = order_qs [0]
+        #check if the order item is in the order
+        if order.items.filter (item__pk = item_id.pk).exists():
+            order_item = OrderItem.objects.filter(
+                                        item=item_id,
+                                        ordered=False)[0]
+            order.items.remove(order_item)
+            messages.info(request,"This item was removed from your cart")
+            return redirect('summary-url')
+
+        else:
+            messages.info(request,"This item is not in your cart")
+            return redirect('product-url',pk=pk)
+    else:
+        #add a message that the user dosent have order
+        messages.info(request,"you dont have an active order")
+        return redirect('product-url',pk=pk)
+    return redirect('product-url',pk=pk)
+
+
+
+def remove_singel_item_from_cart(request, pk):
     item_id = Item.objects.get(pk=pk)
     order_qs = Order.objects.filter(ordered=False)
 
@@ -87,19 +112,37 @@ def remove_from_cart(request, pk):
             order_item = OrderItem.objects.filter(
                                         item=item_id,
                                         ordered=False)[0]
-            order.items.remove(order_item)
-            messages.info(request,"This item was removed from your cart")
-            return redirect('product-url',pk=pk)
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+               order.items.remove(order_item) 
+            messages.info(request,"This item quantity was updated to your cart")
+            return redirect('summary-url')
+            
 
         else:
             messages.info(request,"This item is not in your cart")
-            return redirect('product-url',pk=pk)
+            return redirect('summary-url')
     else:
         #add a message that the user dosent have order
         messages.info(request,"you dont have an active order")
-        return redirect('product-url',pk=pk)
-    return redirect('product-url',pk=pk)
+        return redirect('summary-url')
+    return redirect('summary-url')
     
+
+
+
+class OrderSummaryDetailView(View):
+    
+    def get(self,*kargs,**kwargs):
+        order = Order.objects.get(ordered=False)
+        context = {
+                'object': order
+                            }
+        return render(self.request, 'order_summary.html', context=context)
+
+
 
 
 class list(ListView):

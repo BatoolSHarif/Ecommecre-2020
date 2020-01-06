@@ -4,9 +4,6 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,49 +21,6 @@
 
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-    <div class="container">
-      <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <strong class="blue-text"><font color="B57EDC">LAVENDER Store</font></strong>
-      </a>
-
-      <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Links -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <!-- Left -->
-        <div class='col-lg-10'>
-        <a class="active" href="{% url 'item-list-url'%}">Home
-          <span class="sr-only">(current)</span>
-        </a>
-     
-        <a class="active" href="{% url 'checkout-url'%}" target="_blank">Checkout</a>
-        <!-- <a class="active" href="{{object.get_absolute_url}}" target="_blank">Products</a> -->
-    </div>
-
-        <!-- Right -->
-        
-            <a class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> 1 </span>
-              <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-            </a>
-  
-
-      </div>
-
-    </div>
-  </nav>
-
-  <div>
-  <!-- Navbar -->
 
   <!--Main layout-->
   <main class="mt-5 pt-4">
@@ -171,17 +125,18 @@
                   <form class="d-flex justify-content-left">
                    
                   <a href="{{object.get_add_to_cart_url}}" class="btn btn-primary btn-md my-0 p">
-                  Add To Cart
+                 <h6><b>Add To Cart</b></h6> 
                   </a>  
                  <i class="fas fa-shopping-cart ml-1"></i>
                  
                 <a href = "{{object.get_remove_from_cart_url}}" class="btn btn-danger btn-md my-0 p" >
-                    Remove from Cart
+                   <h6><b>Remove from Cart</b></h6> 
                   </a> 
                   </form>
+              
                 </div>
                 <!--Content-->
-                
+          
               </div>
               <!--Grid column-->
       
