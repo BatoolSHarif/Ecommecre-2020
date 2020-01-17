@@ -1,0 +1,587 @@
+{%load static%}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="{%static 'css/mdb.min.css'%}" rel="stylesheet">
+<!-- Your custom styles (optional) -->
+<link href="{%static 'css/style.min.css'%}" rel="stylesheet">
+<style type="text/css">
+  html,
+  body,
+  header,
+  .carousel {
+    height: 60vh;
+  }
+
+  @media (max-width: 740px) {
+
+    html,
+    body,
+    header,
+    .carousel {
+      height: 100vh;
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 850px) {
+
+    html,
+    body,
+    header,
+    .carousel {
+      height: 100vh;
+    }
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+      <strong class="blue-text"><font color="B57EDC">LAVENDER Store</font></strong>
+    </a>
+
+    <!-- Collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Left -->
+    
+      <div class='col-lg-10'>
+          <a class="active" href="{% url 'item-list-url'%}">Home
+            <span class="sr-only">(current)</span>
+          </a>
+       
+          <a class="active" href="{% url 'checkout-url'%}" target="_blank">Checkout</a>
+          <!-- <a class="active" href="" target="_blank">Products</a> -->
+      </div>
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a href="{% url 'summary-url' %}"  class="nav-link waves-effect">
+                <span class="badge red z-depth-1 mr-1"></span>
+                <i class="fas fa-shopping-cart"></i>
+                <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'account_logout' %}"  class="nav-link waves-effect">
+                <span class="clearfix d-none d-sm-inline-block"> Logout </span>
+              
+              </a>  <div>
+                  {%for profile_name in profile%}
+                  Welcome {{profile_name.requset.user.username}}
+                  {%endfor%}
+                </div>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'profile_url' %}"  class="nav-link waves-effect">
+                <span class="clearfix d-none d-sm-inline-block"> Profile </span>
+              </a></li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'account_login' %}"  class="nav-link waves-effect">
+            <span class="clearfix d-none d-sm-inline-block"> Login </span>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a href="{% url 'account_signup' %}"  class="nav-link waves-effect">
+            <span class="clearfix d-none d-sm-inline-block"> Signup </span>
+          </a>
+        </li>
+        
+        {% endif %}
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>LAVENDER WEB SITE</title>
+  <title>{% block head_title %}{% endblock %}</title>
+  
+  {% block extra_head %}
+  {% endblock %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <style type="text/css">
+  </style>
+
+<!-- Messages Alert : -->
+<div class = "mt-5 pt-4">
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message }}
+  </div>
+  {% endfor %}
+{% endif %}
+</div>
+
+{% block content %}
+{% endblock %}
+
+{% block extra_body %}
+{% endblock %}
+</body>
+</html>
+
+
+
+
+<div id="menu_area" class="menu-area">
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-light navbar-expand-lg mainmenu">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown3</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+                                </ul>
+                            </li>
+                            </ul>
+                        </li>
+  
+
+
+
+
+
+ <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white"><span class="icon-menu h3 text-white"></span></a></div>
+            <nav class="site-navigation text-left mr-auto " role="navigation">
+              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                <li><a href="{% url 'about_url'%}" class="nav-link">About</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+          <style>
+          .dropdown-submenu {
+            position: relative;
+          }
+          
+          .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+          }</style>
+          
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Catigores
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+         
+        
+              <li class="dropdown-submenu">
+                <a class="test" tabindex="-1" href="{% url 'bed_list_url'%}">Beds <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="{% url 'double_bed_list_url'%}">Double Beds</a></li>
+                  <li><a tabindex="-1" href="{% url 'single_bed_list_url'%}">Single Beds</a></li>
+                  <li><a tabindex="-1" href="{% url 'child_bed_list_url'%}">Children Beds</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a class="test" tabindex="-1" href="{% url 'desk_list_url'%}">Desks <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="{% url 'office_desk_list_url'%}">Office Desks</a></li>
+                  <li><a tabindex="-1" href="{% url 'comp_desk_list_url'%}">Computer Desks</a></li>
+                  <li><a tabindex="-1" href="{% url 'chair_desk_list_url'%}">Office Chairs</a></li>
+                  
+                  
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a class="test" tabindex="-1" href="{% url 'ligthing_list_url'%}">Lamps <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="{% url 'ceiling_lamp_list_url'%}">Ceiling Lamps</a></li>
+                  <li><a tabindex="-1" href="{% url 'floor_lamp_list_url'%}">Floor Lamps</a></li>
+                  <li><a tabindex="-1" href="{% url 'table_lamp_list_url'%}">Table Lamps</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+<script>
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>
+
+
+--------------------------------------------------------------------------------------------------
+Checkout: ORIGINAL
+
+
+<!--Main layout-->
+  <main>
+
+<style>
+.div {
+opacity: 0.5;
+}
+    
+</style>
+
+    <div class="ftco-blocks-cover-1">
+    <div class="ftco-cover-1 mx-auto"  style="background-image: url(static/images/hero_1.png);">
+
+      <!-- Heading -->
+      <h2 class="my-9 h2 text-center">Checkout form</h2>
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-8 mb-4">
+
+          <!--Card-->
+          <div class="card ">
+
+            <!--Card content-->
+            <form method="POST" class="card-body" action="{% url 'checkout-url'%}">
+                {% csrf_token %}
+
+              <!--address-2-->
+              <div class="md-form mb-5 mx-auto">
+                
+                <div>Address*</div>
+                <input type='text'  placeholder='1234 Main St' id='shipping_address' name='address' class='form-control mx-auto"' />
+                <label for="shipping_address" class=""></label>
+              </div>
+              <div class="md-form mb-5">
+                <div>Address 2 (optional)</div>
+                <input type='text' placeholder='Apartment or suite' id='shipping_address2' name='address2' class='form-control text-center"' />
+                <label for="shipping_address2" class=""></label>
+              </div>
+              
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-12 mb-4">
+
+                  <!-- <label for="country">Country</label> -->
+                  <label for="country_id">Country</label>
+                  <select class="custom-select d-block w-100" id="country" name="country"required>  
+                  <option value="{{ form.country }}"></option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                  <label for="city_id">City</label>
+                  <select class="custom-select d-block w-100"id="country"name="city"required>
+                    <option value="{{ form.city }}"></option>
+                    <div class="invalid-feedback">
+                      Please select a valid city.
+                    </div>
+
+                </div></div>
+                <div class="row">
+                <div class="md-form mb-5">
+                <div>   Phone Number :</div>
+                <input type='text'id='pn_id' name='phone_number' class='form-control' placeholder="07XX XXX XXX">
+                <label for="pn_id" class=""></label>
+                </div>
+                </div>
+            
+                <hr class="mb-4">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Continue to checkout">
+
+            </form>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
+
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{order.item.count}}</span>
+          </h4>
+
+          <!-- Cart -->
+          <ul class="list-group mb-3 z-depth-1">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              {% for order_item in order.items.all %}
+              <div>
+                <h6 class="my-0">{{order_item.quantity}}x{{order_item.item.title}}</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">{{order_item.item.price}}JD</span>
+            </li>{%endfor%}
+          
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (JOD)</span>
+              <strong>{{order.item.total_item_price}}JD's</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+  <!--Main layout-->
+</body>
+
+</html>
+
+{%endblock%}
+<!-- 
+<ul class="list-group mb-3 z-depth-1">
+  {% for order_item in order.items.all %}
+  <li class="list-group-item d-flex justify-content-between lh-condensed">
+    <div>
+      <h6 class="my-0">{{order_item.item.quantity}}{{order_item.item.title}}</h6>
+      <small class="text-muted">Brief description</small>
+    </div>
+    <span class="text-muted">{{order_item.final_price}}</span>
+  </li>
+  {%endfor%}
+  <li class="list-group-item d-flex justify-content-between lh-condensed">
+    
+   
+  </li>
+  <li class="list-group-item d-flex justify-content-between lh-condensed">
+    
+  </li>
+  <li class="list-group-item d-flex justify-content-between bg-light">
+    
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <span>Total (USD)</span>
+    <strong>{{order_item.items.total_item_price}}</strong>
+  </li>
+</ul> -->
+
+
+
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+
+
+
+{%extends 'base.html'%}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <div class="site-wrap" id="home-section">
+  
+      <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div>
+  
+<style>
+
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+.div
+{
+opacity: 0.5;
+}
+</style>
+</head>
+<body>
+  
+<br><br><br>
+<div class="ftco-blocks-cover-1">
+  <div class="ftco-cover-1 mx-auto"  style="background-image: url(static/images/hero_1.png);">
+
+<h2><p class="text-center">Checkout Form</p></h2>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form>
+      
+        <div class="row">
+          <div class="col-50">
+            <h3>Billing Address</h3>
+            <label for="fname"><i class="icon-user"></i> Full Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+            <label for="email"><i class="icon-envelope"></i> Email</label>
+            <input type="text" id="email" name="email" placeholder="john@example.com">
+            <label for="adr"><i class="icon-address-card-o"></i> Address</label>
+            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+            <label for="city"><i class="icon-institution"></i> City</label>
+            <input type="text" id="city" name="city" placeholder="New York">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="NY">
+              </div>
+              <div class="col-50">
+                <label for="zip">Zip</label>
+                <input type="text" id="zip" name="zip" placeholder="+962">
+              </div>
+            </div>
+          </div>
+
+    
+          
+        </div>
+        <label>
+          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+        </label>
+        <input type="submit" value="Continue to checkout" class="btn">
+      </form>
+    </div>
+  </div></div></div></div>
+
+
+</body>
+</html>
+
+{%endblock%}

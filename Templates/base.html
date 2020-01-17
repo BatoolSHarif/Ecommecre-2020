@@ -1,116 +1,239 @@
 {%load static%}
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="{%static 'css/mdb.min.css'%}" rel="stylesheet">
-<!-- Your custom styles (optional) -->
-<link href="{%static 'css/style.min.css'%}" rel="stylesheet">
-<style type="text/css">
-  html,
-  body,
-  header,
-  .carousel {
-    height: 60vh;
-  }
 
-  @media (max-width: 740px) {
+<!doctype html>
+<html lang="en">
 
-    html,
-    body,
-    header,
-    .carousel {
-      height: 100vh;
-    }
-  }
+  <head>
+    <title>Lavender &mdash;Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,400,700&display=swap" rel="stylesheet">
 
-  @media (min-width: 800px) and (max-width: 850px) {
+    <link rel="stylesheet" href="{%static 'fonts/icomoon/style.css'%}">
 
-    html,
-    body,
-    header,
-    .carousel {
-      height: 100vh;
-    }
-  }
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/animate.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/jquery.fancybox.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/owl.theme.default.min.css'%}">
+    <link rel="stylesheet" href="{%static 'fonts/flaticon/font/flaticon.css'%}">
+    <link rel="stylesheet" href="{%static 'css/aos.css'%}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background-image: url(static/images/dot-grid.jpg);}
+
+.vl {
+  border: 1px solid gray;
+  height: 0.5px;
+  width: 500px;
+  margin: 0px;
+  top: 0;
+   margin-left: -9px;
+}
+.div2 {
+  width: 500px;
+  height: 250px;
+  padding: 50px;
+  border: 1px solid gray;
+}
+
+.dropdown-submenu 
+{
+position: relative;
+}
+          
+.dropdown-submenu .dropdown-menu {
+top: 0;
+left: 100%;
+margin-top: -1px;
+}
 
 </style>
-</head>
+  </head>
+  <header class="site-navbar site-navbar-target" role="banner">
 
-<body>
+        <div class="container">
+          <div class="row align-items-center position-relative">
+            <div class="col-lg-0">
+              <nav class="site-navigation text-right ml-auto " role="navigation">
+                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                  <li class="active"><a href="{% url 'item-list-url'%}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Home page"><span class="icon-home">&nbsp;</span>Home</a></li>
+                  <li><a href="{% url 'checkout-url'%}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Checkout page"><span class="icon-money">&nbsp;</span>Checkout</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'summary-url' %}"  class="nav-link" data-toggle="tooltip" data-placement="top" title="Cart page">
+                  <span class="icon-shopping-cart">&nbsp;</span>Cart  
+                  </a></li>
+                  <li><a href="{% url 'account_logout' %}"  class="nav-link" data-toggle="tooltip" data-placement="top" title="Logout Page - Comeback again"><span class="icon-sign-out">&nbsp;</span>Logout</a> </li>
+                  <li><a href="{% url 'profile_url' %}"  class="nav-link" data-toggle="tooltip" data-placement="top" title="profile page"> <span class="icon-user-circle">&nbsp;</span>Profile </a></li>
+                  
+                  {% else %}
+                  <li><a href="{% url 'account_login' %}"  class="nav-link icon-login" data-toggle="tooltip" data-placement="top" title="Login page">Login</a></li>
+                  <li><a href="{% url 'account_signup' %}"  class="nav-link" data-toggle="tooltip" data-placement="top" title="Signup page">Signup</a> </li>
+                  
+                  {% endif %}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li class="site-logo" style="color: teal; font-size:20px;" data-toggle="tooltip" data-placement="top" title="Our Lovely Store" ><img width=50px src="{% static 'images/lavender22222.jpg' %}">Lavender Shop</li>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li><a class="nav-link">Hi {{request.user.username}} !</a></li>
 
-<!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-  <div class="container">
-    <!-- Brand -->
-    <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-      <strong class="blue-text"><font color="B57EDC">LAVENDER Store</font></strong>
-    </a>
+          </div>
+          <div class="col-lg-0">               
+            
+              <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white"><span class="icon-menu h3 text-white"></span></a></div>
+            <nav class="site-navigation text-left mr-auto " role="navigation">
+              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                <li><a href="{% url 'about_url'%}" class="nav-link "data-toggle="tooltip" data-placement="top" title="About us"><span class="icon-question">&nbsp;</span>About</a></li>
+                <li><a href="{% url 'contact_url' %}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Contact us"><span class="icon-phone">&nbsp;</span>Contact</a></li>
+                
+              </ul>
+            </nav>
+          </div>
 
-    <!-- Collapse -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <!-- Left -->
-    
-      <div class='col-lg-10'>
-          <a class="active" href="{% url 'item-list-url'%}">Home
-            <span class="sr-only">(current)</span>
-          </a>
-       
-          <a class="active" href="{% url 'checkout-url'%}" target="_blank">Checkout</a>
-          <!-- <a class="active" href="" target="_blank">Products</a> -->
-      </div>
-      <!-- Right -->
-      <ul class="navbar-nav nav-flex-icons">
-        <li class="nav-item">
-          <a href="{% url 'summary-url' %}"  class="nav-link waves-effect">
-            <span class="badge red z-depth-1 mr-1"> 1 </span>
-            <i class="fas fa-shopping-cart"></i>
-            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-          </a>
-        </li>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      
+          
         
-      </ul>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" style="background-color:teal;" type="button" data-toggle="dropdown" data-toggle="tooltip" data-placement="top" title="Products">Catigores
+            <span ></span></button>
+            <ul class="dropdown-menu">
+              <li> <a class="test" tabindex="-1" href="{% url 'bed_list_url'%}"style="color:teal;" data-toggle="tooltip" data-placement="top" title="Beds page">Beds <span class="caret"></span></a></li>
+              <li><a class="test" tabindex="-1" href="{% url 'desk_list_url'%}"style="color:teal;"data-toggle="tooltip" data-placement="top" title="Desks page">Desks <span class="caret"></span></a></li>
+              <li><a class="test" tabindex="-1" href="{% url 'ligthing_list_url'%}"style="color:teal;" data-toggle="tooltip" data-placement="top" title="Lamps page">Lamps <span class="caret"></span></a></li>
+
+              </li>
+                </ul>
+          </div>
+        </div>
+<form action='{% url "prodct_catigory_url" %}' method='get'>
+<input class="form-control mx-auto" name='q' type="text" placeholder="Search" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Search for product">
+
+     </form> </div>
+
+<script>
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>
+
+
+</div></div></div>
+
+      </header>
+
+    
+      
+       
+        <title>{% block head_title %}{% endblock %}</title>
+        
+        {% block extra_head %}
+        {% endblock %}
+      <br><br><br><br><br>
+      <!-- Messages Alert : -->
+      <div class = "mt-5 pt-4">
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}
+      </div>
+      
+      {% block content %}
+      {% endblock %}
+      
+      {% block extra_body %}
+      {% endblock %}
+
+         
+
+      
+    <!-- footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-7">
+                <h2 class="footer-heading mb-4">About Us</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+
+              </div>
+              <div class="col-md-4 ml-auto">
+                <h2 class="footer-heading mb-4">Features</h2>
+                <ul class="list-unstyled">
+                  <li><a href="{%url 'services_url'%}">Terms of Service</a></li>
+                  <li><a href="#">Privacy</a></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-4 ml-auto">
+
+            <div class="mb-5">
+              <h2 class="footer-heading mb-4">Subscribe to Newsletter</h2>
+              <form action="#" method="post" class="footer-suscribe-form">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Subscribe</button>
+                  </div>
+                </div>
+            </div>
+
+
+            <h2 class="footer-heading mb-4">Follow Us</h2>
+            <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
     </div>
 
-  </div>
-</nav>
+    <script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{%static 'js/popper.min.js'%}"></script>
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'js/owl.carousel.min.js'%}"></script>
+    <script src="{%static 'js/jquery.sticky.js'%}"></script>
+    <script src="{%static 'js/jquery.waypoints.min.js'%}"></script>
+    <script src="{%static 'js/jquery.animateNumber.min.js'%}"></script>
+    <script src="{%static 'js/jquery.fancybox.min.js'%}"></script>
+    <script src="{%static 'js/jquery.easing.1.3.js'%}"></script>
+    <script src="{%static 'js/aos.js'%}"></script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>{% block head_title %}{% endblock %}</title>
-  <title>LAVENDER WEB SITE</title>
-  {% block extra_head %}
-  {% endblock %}
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
-  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
-  <style type="text/css">
-  </style>
+    <script src="{%static 'js/main.js'%}"></script>
 
-<!-- Messages Alert : -->
-<div class = "mt-5 pt-4">
-{% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    {{ message }}
-  </div>
-  {% endfor %}
-{% endif %}
-</div>
+  </body>
 
-{% block content %}
-{% endblock %}
-</body>
 </html>
-  
+

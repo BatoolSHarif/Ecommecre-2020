@@ -1,0 +1,66 @@
+{% extends 'base.html'%}
+{%block content%}
+
+      <h2 class="my-9 h2 text-center">Refund Request Form</h2>
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-5" >
+        <form action="{%url 'refund_req_url'%}" method="POST">
+          {%csrf_token%}
+
+            <div class="form-group row">
+                <div class="col-md-6 mb-4 mb-lg-0">           
+              <label for="id_Name">Name:</label> 
+              <input class="form-control" type="text" name="Name" maxlength="20" id="id_Name">
+                </div>
+              </div>
+
+            <div class="form-group row">  
+              <div class="col-md-6 mb-4 mb-lg-0">
+            <label for="id_order">Order:</label> 
+            <select class="form-control" name="order" id="id_order">
+              <option value="" selected="">---------</option>
+            
+              <option value="{{form.order}}"></option>
+            
+            </select>
+            </div></div>
+
+            <div class="form-group row">
+              <div class="col-md-6 mb-4 mb-lg-0">
+                <label for="id_order_number">Order number:</label> 
+              <input type="text" class="form-control" name="order_number" maxlength="20" id="id_order_number">
+            </div>
+           </div>
+
+
+ 
+
+          <div class="form-group row">
+          <div class="col-md-6 mb-4 mb-lg-0">
+          <label for="id_message">Message:</label> 
+            <textarea type="text"class="form-control"  name="message" maxlength="100" rows="9" id="id_message"></textarea>
+          </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-md-6 mb-4 mb-lg-0">
+          <label for="id_email">Email:</label> 
+          <input type="email" class="form-control" name="email" maxlength="100" id="id_email">
+        </div>
+      </div>
+
+          <div class="form-group row">
+            <div class="col-md-6 mb-4 mb-lg-0">
+              <input class="btn btn-lg btn-block" style="background-color: teal;" type="submit" value="Continue">
+            </div>
+          </div>
+        </form>            
+</div></div></div></div></div>
+{%endblock%}
+
+
+

@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="row">
+  {% for item in ligting_cat %}
+  <div class="col-lg-2" data-aos="fade-up" data-aos-delay="">
+    
+    <div class="media-92812">
+      <img src="{{item.image.url}}" alt="Image" class="img-fluid">
+      <div class="text">
+        <span class="caption"><h5>{{item.get_catigory_display}}-{{item.get_item_type_display}}</h5></span>
+        <h5><a href="{{item.get_absolute_url}}">{{item.title}}</a></h5>
+        
+       
+
+        </div>
+    </div>
+
+  </div>
+  {%endfor%}
+</div>
+
+{%endblock%}

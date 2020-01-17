@@ -1,0 +1,17 @@
+ 
+<h1>Search Results</h1>
+<form method="GET" action="{% url 'search_url' %}">
+    <input name="q" value="{{request.GET.q}}" placeholder="search">
+    <button class="btn btn-success" type="submit">
+        Search
+    </button>
+</form>
+<ul>
+  {% for city in object_list %}
+    <li>
+      {{ city.title }}
+    </li>
+    <li> {{ city.catigory }}</li>
+    <li>{{city.price}}</li>
+  {% endfor %}
+</ul>
