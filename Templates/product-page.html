@@ -91,17 +91,22 @@
                   <p class="lead font-weight-bold">Description</p>
       
                
-                  <form class="d-flex justify-content-left">
-                   
-                  <a href="{{object.get_add_to_cart_url}}" class="btn btn-md my-0 p" style="background-color: teal;">
+                  <form method="POST" action="{{object.get_add_to_cart_url}}" class="d-flex justify-content-left">
+                    {%csrf_token%}
+                    {{form.as_p}}
+                  <button href="{{object.get_add_to_cart_url}}" class="btn btn-md my-0 p" style="background-color: teal;">
                  <h6><b>Add To Cart</b></h6> 
-                  </a>  
-                 <i class="fas fa-shopping-cart ml-1"></i>
+                  </button>  
                  
-                <a href = "{{object.get_remove_from_cart_url}}" class="btn btn-danger btn-md my-0 p" >
-                   <h6><b>Remove from Cart</b></h6> 
-                  </a> 
                   </form>
+          <form method="POST" action="{{object.get_remove_from_cart_url}}" class="d-flex justify-content-left">
+                    {%csrf_token%}
+                    {{form.as_p}}
+                    <button href = "{{object.get_remove_from_cart_url}}" class="btn btn-danger btn-md my-0 p" >
+                   <h6><b>Remove from Cart</b></h6> 
+                    </button>
+          </form> 
+                 
               
                 </div>
                 <!--Content-->

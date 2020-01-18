@@ -33,13 +33,31 @@ opacity: 0.5;
               <td>{{order_item.item.title}}</td>
               <td>{{order_item.item.price}} JD</td>
               <td>
-                <a href="{%url 'remove-singel-item-url' pk=order_item.item.pk %}"><i class="icon-minus mr-2" ></i></a>
-                {{order_item.quantity}}
-                <a href="{%url 'add-to-cart-url' pk=order_item.item.pk %}"><i class="icon-plus ml-2" ></i></a></td>
+                <form method="POST" action="{%url 'remove-singel-item-url' pk=order_item.item.pk %}" class="d-flex justify-content-left">
+                  {%csrf_token%}
+                  {{form.as_p}}
+                <button style="background-color: white; border: white;" href="{%url 'remove-singel-item-url' pk=order_item.item.pk %}" value="icon-minus mr-2" >
+                  <i class="icon-minus mr-2" ></i>
+                </button>                 
+                </form>
+                &nbsp; {{order_item.quantity}}
+                <form method="POST" action="{%url 'add-to-cart-url' pk=order_item.item.pk %}" class="d-flex justify-content-left">
+                  {%csrf_token%}
+                  {{form.as_p}}
+                <button class="mr-2" style="background-color: white; border: white;" href="{%url 'add-to-cart-url' pk=order_item.item.pk %}">
+                  <i class="icon-plus mr-2" ></i>
+                </button>                 
+                </form>
               <td>
                 {{order_item.total_item_price}} JD's
-                <a style="color: red;" href="{%url 'remove-url' pk=order_item.item.pk %}">
-                <i class="icon-trash float-right" ></i></a>
+
+                <form method="POST" action="{%url 'remove-url' pk=order_item.item.pk %}" class="d-flex justify-content-left">
+                  {%csrf_token%}
+                  {{form.as_p}}
+                <button class="mr-2" style="background-color: white; border: white;" href="{%url 'remove-url' pk=order_item.item.pk %}">
+                  <i style="color: red;" class="icon-trash float-right" ></i></a>
+                </button>                 
+                </form>                
               </td>
             </tr>
            <tr>
