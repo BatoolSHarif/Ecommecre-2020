@@ -52,7 +52,6 @@ class UserProfile(models.Model):
         return self.user.username
 
 class ItemModel (models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,blank=True,null=True)
     title = models.CharField (max_length=100)
     price = models.FloatField(default=0.0)
     catigory = models.CharField (choices= CATIGORY_CHOICES, max_length = 2, default="S")
