@@ -2,155 +2,134 @@
 {% block content %}
 {% load static %}
 
-<main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
 
-              <div class="col-md-6 mb-4">
-                <img src="{{ object.image.url }}" class="img-fluid" alt="">
-                
-              </div>
-              <!--Grid column-->
-      
-              <!--Grid column-->
-              <div class="col-md-6 mb-4">
+<div class="single-product-area section-padding-100 clearfix">
+  <div class="container-fluid">
 
-                <!--Content-->
-                 <class="p-4">
-      
-                  <div class="mb-3">
-                    <a href="#" class="font-weight-bold blue-text">
-                      <strong><h4>Title : {{object.title}}</h4></strong>
-                    </a>
-                    <a href="#" class="font-weight-bold blue-text">
-                      <strong><h4>Price : {{object.price}} JD</h1></strong>
-                    </a>
-                    <a href="#" class="font-weight-bold blue-text">
-                      <strong><h4>Catigory : {{object.get_catigory_display}}</h1></strong>
-                    </a>
-                    <a href="#" class="font-weight-bold blue-text">
-                      <strong><h4>Item Type : {{object.get_item_type_display}}</h1></strong>
-                    </a>
-                    <a href="#" class="font-weight-bold blue-text">
-                      <strong><h4>Description : {{object.descrption}}</h1></strong>
-                    </a>
+      <div class="row">
+          <div class="col-12">
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mt-50">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item"><a >Catigories</a></li>
+                      <li class="breadcrumb-item"><a href="{%url 'bed_list_url'%}" >{{object.get_catigory_display}}</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{object.title}}</li>
+                  </ol>
+              </nav>
+          </div>
+      </div>
 
-                    <br><br><br>
-                 
-                    
+      <div class="row">
+          <div class="col-12 col-lg-7">
+              <div class="single_product_thumb">
+                  <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                      <ol class="carousel-indicators">
+                          <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/pro-big-1.jpg);">
+                          </li>
+                          <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/pro-big-2.jpg);">
+                          </li>
+                          <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/pro-big-3.jpg);">
+                          </li>
+                          <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/pro-big-4.jpg);">
+                          </li>
+                      </ol>
+                      <div class="carousel-inner">
+                          <div class="carousel-item active">
+                              <a class="gallery_img" href="{{ object.image.url }}">
+                                 <center> <img class="d-block w-" src="{{ object.image.url }}" alt="First slide"></center>
+                              </a>
+                          </div>
+                      </div>
                   </div>
-                
+              </div>
+          </div>
+          <div class="col-12 col-lg-5">
+              <div class="single_product_desc">
+                  <!-- Product Meta Data -->
+                  <div class="product-meta-data">
+                      <div class="line"></div>
+                      <p class="product-price">Price : {{object.price}} JD</p>
+                          <h6>Title : {{object.title}}</h6>
+                      </a>
+                      <p class="avaibility"><i style="color: green;" class="fa fa-circle"></i> In Stock</p>
+<!-- Ratings & Review -->
+                     
+                  </div>
 
-                  <!-- Font Awesome Icon Library -->
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-        .checked {
-            color: orange;
-            
-        }
-        </style>
-        
-        
-        <span  onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:40px;cursor:pointer;"  class="fa fa-star checked"></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:40px;cursor:pointer;" class="fa fa-star "></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:40px;cursor:pointer;" class="fa fa-star "></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
-        <br/>
-        </body>
-        <script>
-        var count;
-        function starmark(item)
-        {
-        count=item.id[0];
-        sessionStorage.starRating = count;
-        var subid= item.id.substring(1);
-        for(var i=0;i<5;i++)
-        {
-        if(i<count)
-        {
-        document.getElementById((i+1)+subid).style.color="orange";
-        }
-        else
-        {
-        document.getElementById((i+1)+subid).style.color="black";
-        }
-        }
-        }
-        function result()
-        {
-        //Rating : Count
-        //Review : Comment(id)
-        alert("Rating : "+count+"\nReview : "+document.getElementById("comment").value);
-        }
-        </script>
-                  <p class="lead font-weight-bold">Description</p>
-      
-               
+                  <div class="short_overview my-5">
+                      <p>{{object.descrption}}</p>
+                      
+                  </div>
+                      <meta charset="utf-8">
+                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                      <style>
+                      .checked {
+                          color: orange;
+                          
+                      }
+                      </style>
+                      
+                      
+                      <span  onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:40px;cursor:pointer;"  class="fa fa-star checked"></span>
+                      <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  style="font-size:40px;cursor:pointer;" class="fa fa-star "></span>
+                      <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  style="font-size:40px;cursor:pointer;" class="fa fa-star "></span>
+                      <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
+                      <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
+                      <br/>
+                      </body>
+                      <script>
+                      var count;
+                      function starmark(item)
+                      {
+                      count=item.id[0];
+                      sessionStorage.starRating = count;
+                      var subid= item.id.substring(1);
+                      for(var i=0;i<5;i++)
+                      {
+                      if(i<count)
+                      {
+                      document.getElementById((i+1)+subid).style.color="orange";
+                      }
+                      else
+                      {
+                      document.getElementById((i+1)+subid).style.color="black";
+                      }
+                      }
+                      }
+                      function result()
+                      {
+                      //Rating : Count
+                      //Review : Comment(id)
+                      alert("Rating : "+count+"\nReview : "+document.getElementById("comment").value);
+                      }
+                      </script>
+                      <br><br>
+                      <!-- Avaiable -->
+                  <!-- Add to Cart Form --> 
+                  <div class="row">
                   <form method="POST" action="{{object.get_add_to_cart_url}}" class="d-flex justify-content-left">
                     {%csrf_token%}
                     {{form.as_p}}
                   <button href="{{object.get_add_to_cart_url}}" class="btn btn-md my-0 p" style="background-color: teal;">
                  <h6><b>Add To Cart</b></h6> 
                   </button>  
-                 
                   </form>
-          <form method="POST" action="{{object.get_remove_from_cart_url}}" class="d-flex justify-content-left">
+                  &nbsp;&nbsp;&nbsp;                 
+                  <form method="POST" action="{{object.get_remove_from_cart_url}}" class="d-flex justify-content-left">
                     {%csrf_token%}
                     {{form.as_p}}
                     <button href = "{{object.get_remove_from_cart_url}}" class="btn btn-danger btn-md my-0 p" >
                    <h6><b>Remove from Cart</b></h6> 
                     </button>
-          </form> 
-                 
-              
-                </div>
-                <!--Content-->
-          
+                   </form> </div>
+                  
               </div>
-              <!--Grid column-->
-      
-            </div>
-
-          <div>
-            <br><br><br><br><br><br>
-          <!--Grid row-->
-          <div class="row d-flex justify-content-center wow fadeIn">
           </div>
-          <div class="row wow fadeIn">
-          <div class="col-lg-4 col-md-12 mb-4">
-    
-              <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-    
-            </div>
-            <!--Grid column-->
-    
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4">
-    
-              <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-    
-            </div>
-            <!--Grid column-->
-    
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4">
-    
-              <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-    
-            </div>
-            <!--Grid column-->
-    
-          </div>
-          <!--Grid row-->
-    
-        </div>
-        
-
-    
-    
+      </div>
+  </div>
+</div>
 {%endblock%}
