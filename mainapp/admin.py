@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import models
-from .models import CommentModel,BillingAddressModel
+from .models import CommentModel,BillingAddressModel,ProductTags,Tag
 
 
 
@@ -41,3 +41,9 @@ admin.site.register(CheckoutModel)
 
 from mainapp.models import RefundRequestModel
 admin.site.register(RefundRequestModel)
+
+from mainapp.models import Tag
+admin.site.register(Tag)
+
+from mainapp.models import ProductTags
+admin.site.register(ProductTags)

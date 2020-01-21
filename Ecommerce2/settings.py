@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'mainapp',
     'django_comments',
-    'star_ratings',
-    
 ]
 
 MIDDLEWARE = [

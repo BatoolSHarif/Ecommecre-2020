@@ -274,13 +274,13 @@ class RefundRequest(CreateView):
     fields = '__all__'
 
 
-    def get_context_data(self,**kwargs):
+    # def get_context_data(self,**kwargs):
         # context = super(RefundRequest,self).get_context_data(**kwargs)
         # order1 = OrderModel.objects.filter(user=self.request.user)
         # refund_req = order.objects.all()
         # refund_req.update(refund_request=True)
         # refund_req.save()
-        return context
+        # return context
  
 
 #--------------------------------------------------------------------------------
@@ -363,6 +363,9 @@ class ServicesListView(ListView):
     template_name = "services.html"
 
 
+
+
+# def rating 
 # class SearchListView(ListView):
 #     model = ItemModel
 #     template_name = "search_results.html"

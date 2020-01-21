@@ -35,7 +35,7 @@ urlpatterns =[
     path('order-summary',views.OrderSummaryDetailView.as_view(),name="summary-url"),
 
 # Comment
-    path('/product/1',views.add_comment,name = 'comment-url'),
+    path('comment',views.add_comment,name = 'comment-url'),
     
 # Add/Remove from cart URLS
     path('add-to-cart/<int:pk>',views.add_to_cart,name = "add-to-cart-url"),
@@ -77,6 +77,8 @@ urlpatterns =[
 
 # Search 
     path('our_services',views.ServicesListView.as_view(),name="services_url"),
+    
+
 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

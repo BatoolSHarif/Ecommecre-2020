@@ -160,7 +160,32 @@ class RefundRequestModel(models.Model):
         return  f"{self.order.title}" 
 
 
+class Rating(models.Model):
 
+    RATING_CHOICES = (
+        (1, 'Poor'),
+        (2, 'Average'),
+        (3, 'Good'),
+        (4, 'Very Good'),
+        (5, 'Excellent')    
+    )
+    productID = models.ForeignKey(OrderItemModel, on_delete=models.CASCADE)
+    indRating = models.IntegerField(choices=RATING_CHOICES)
+
+
+
+class Tag(models.Model):
+    tag = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.tag
+
+
+class ProductTags(models.Model):
+    tag_name = models.ManyToManyField(to='Tag')
+    tag_product = models.ForeignKey(to='ItemModel', on_delete=models.CASCADE, null=True, blank=True, unique=True)
+    def __str__(self):
+        return  self.tag_product
 
 
 # class product(models.Model):

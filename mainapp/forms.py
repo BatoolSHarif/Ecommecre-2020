@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.models import ModelForm
-from .models import ItemModel, OrderItemModel,CheckoutModel,UserProfileModel,RefundRequestModel,CommentModel,BillingAddressModel
+from .models import ItemModel,Rating, OrderItemModel,CheckoutModel,UserProfileModel,RefundRequestModel,CommentModel,BillingAddressModel
 
 
 

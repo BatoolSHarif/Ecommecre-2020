@@ -3,121 +3,99 @@
 {% load static %}
 
 <main>
-
-
-
-  
-      <div class="ftco-blocks-cover-1">
-      <div class="ftco-cover-1 mx-auto"  style="background-image: url(static/images/hero_1.png);">
-  
         <!-- Heading -->
         <h2 class="my-9 h2 text-center">Checkout form</h2>
-  
         <!--Grid row-->
+        <div class="site-section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 mb-5" >
         <div class="row">
-  
-          <!--Grid column-->
           <div class="col-md-8 mb-4">
-  
             <!--Card-->
             <div class="card ">
-  
               <!--Card content-->
               <form method="POST" class="card-body" action="{% url 'checkout-url'%}">
                   {% csrf_token %}
-  
                 <!--address-2-->
-                <div class="md-form mb-5 mx-auto">
+                <div class="form-group row">  
+                  <div class="col-md-6 mb-4 mb-lg-0">
                   
                   <div>Address*</div>
                   <input type='text'  placeholder='1234 Main St' id='shipping_address' name='address' class='form-control mx-auto"' />
                   <label for="shipping_address" class=""></label>
-                </div>
-                <div class="md-form mb-5">
+                </div></div>
+
+
+                <div class="form-group row">  
+                  <div class="col-md-6 mb-4 mb-lg-0">
                   <div>Address 2 (optional)</div>
                   <input type='text' placeholder='Apartment or suite' id='shipping_address2' name='address2' class='form-control text-center"' />
                   <label for="shipping_address2" class=""></label>
-                </div>
-                
-                <!--Grid row-->
-                <div class="row">
-  
-                  <!--Grid column-->
-                  <div class="col-lg-4 col-md-12 mb-4">
-  
-                    <!-- <label for="country">Country</label> -->
-                    <label for="country_id">Country</label>
-                    <select class="custom-select d-block w-100" id="country" name="country"required>  
+                </div></div>
+
+
+                <div class="form-group row">  
+                  <div class="col-md-6 mb-4 mb-lg-0">
+                    <label for="id_country">Country:</label>
+                    <select class="form-control" name="country" id="id_country"required>
                     <option value="{{ form.country }}"></option>
                     </select>
                     <div class="invalid-feedback">
                       Please select a valid country.
                     </div>
-  
-                  </div>
-                  <!--Grid column-->
-  
-                  <!--Grid column-->
-                  <div class="col-lg-4 col-md-6 mb-4">
-  
-                    <label for="city_id">City</label>
-                    <select class="custom-select d-block w-100"id="country"name="city"required>
-                      <option value="{{ form.city }}"></option>
-                      <div class="invalid-feedback">
+                  </div></div>
+
+                  <div class="form-group row">  
+                    <div class="col-md-6 mb-4 mb-lg-0">
+                  <label for="id_city">City:</label> 
+                    <select class="form-control" name="city" id="id_city"required>
+                  <option value="{{ form.city }}"></option>
+                  </select>
+                  <div class="invalid-feedback">
                         Please select a valid city.
                       </div>
-  
-                  </div></div>
-                  <div class="row">
-                  <div class="md-form mb-5">
+                      </div>
+                  </div>
+
+                  <div class="form-group row">  
+                  <div class="col-md-6 mb-4 mb-lg-0">
                   <div>   Phone Number :</div>
-                  <input type='text'id='pn_id' name='phone_number' class='form-control' placeholder="07XX XXX XXX">
+                  <input type='text'id='pn_id' name='phone_number' class='form-control center' placeholder="07XX XXX XXX">
                   <label for="pn_id" class=""></label>
                   </div>
                   </div>
-              
-                  <hr class="mb-4">
-                  <input class="btn btn-primary btn-lg btn-block" type="submit" value="Continue to checkout">
-  
+
+                  <div class="form-group row">  
+                    <div class="col-md-6 mb-4 mb-lg-0">
+                  <input class="btn  btn-lg btn-block" style="background-color: teal; color: white;" type="submit" value="Continue to checkout">
+                    </div></div>
               </form>
   
             </div>
             <!--/.Card-->
   
           </div>
-          <!--Grid column-->
-  
-          <!--Grid column-->
-          <div class="col-md-4 mb-4">
-  
-            <!-- Heading -->
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <span class="text-muted">Your cart</span>
-              <span class="badge badge-secondary badge-pill">{{order.item.count}}</span>
-            </h4>
-  
-            <!-- Cart -->
-            <ul class="list-group mb-3 z-depth-1">
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
-                {% for order_item in order.items.all %}
-                <div>
-                  <h6 class="my-0">{{order_item.quantity}}x{{order_item.item.title}}</h6>
-                  <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">{{order_item.item.price}}JD</span>
-              </li>{%endfor%}
-            
-              <li class="list-group-item d-flex justify-content-between">
-                <span>Total (JOD)</span>
-                <strong>{{order.item.total_item_price}}JD's</strong>
+
+         
+          <div class="card" style="width: 250px;">
+            <div class="card-header" style="background-color:teal; color: white;">
+             <h3>Your Order :</h3> 
+            </div>
+            <ul class="list-group list-group-flush">
+              {% for order_item in order.items.all %}
+              <li class="list-group-item">{{order_item.quantity}}x{{order_item.item.title}}
+                <span class="text-muted">item price: {{order_item.item.price}}JD</span></h5>
               </li>
+              {%endfor%}
+              <li class="list-group-item">Total Price : {{order.final_price}}JD's</li>
             </ul>
           </div>
+
+
+          </div>
         </div>
-      </div>
-      </div>
+        </div></div></div></div>
     </main>
-    <!--Main layout-->
-  </body>
-  
+    <!--Main layout-->  
   </html>{%endblock%}
