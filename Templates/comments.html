@@ -1,10 +1,53 @@
+{%extends 'base.html'%}
+{% block content %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-
-
-<h1>Add New Comment</h1>
-<form method="POST" action="{% url 'comment-url' %}">
-    {% csrf_token%}
-    {{form.as_p}}
-<button type="submit">submit</button>
-</form>
-
+<div class="container">
+    <div class="row">
+    <h2>Feedback</h2>
+    <div width="100%" border="0">
+      <div class="col-md-9 col-md-offset-0">
+        <tr><td width="77%">
+        <div class="">
+        <form class="form-horizontal" method="POST" action="{% url 'comment-url' %}">
+            {% csrf_token%}
+          <fieldset>
+    
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Full Name</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" placeholder="Your name" name="name" maxlength="80" required="" id="id_name">
+              </div>
+            </div>
+    
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">Your E-mail</label>
+              <div class="col-md-9">
+                <input type="email"class="form-control" name="email" maxlength="254" placeholder="x@yahoo.com" required="" id="id_email">
+              </div>
+            </div>
+    
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="message">Your message</label>
+              <div class="col-md-9">
+                <textarea class="form-control" name="body" placeholder="Please enter your feedback here + Product Name..." cols="40" rows="10" required="" id="id_body"></textarea>
+              </div>
+            </div>
+            <div class="center">
+            <button class="btn btn-primary" type="submit">submit</button>
+        </div>
+       </fieldset> 
+    </form>    
+        
+        </td>
+        </tr>
+        </div></div>
+    </table>
+</div>
+{%endblock%}

@@ -15,7 +15,48 @@
     <!-- Features Section End -->
 
     <!-- Latest Product Begin -->
-    <br><br><br><br>
+    <br><br>
+    <div class="features-ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-features-ads first">
+                        <br>
+                        <img src="{% static 'images/f-delivery.png'%}" alt="">
+                        <h4>Cash on delivary</h4>
+                        <p>Payment procedure is throguht cash on delivery </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads second">
+                        <img src="{% static 'images/coin.png'%}" alt="">
+                        <h4>100% Money back </h4>
+                        <p>If you want to return products , you can do it easily 
+                           only a press . </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads">
+                        <img src="{% static 'images/chat.png'%}" alt="">
+                        <h4>Online support 24/7</h4>
+                        <p>We are here 24 hours, 7 days a week to serve you , contact us any time. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 ">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mt-50">
+                    <li class="breadcrumb-item active"><a href="{%url 'item-list-url'%}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{%url 'bed_list_url'%}" >Beds</a></li>
+                    <li class="breadcrumb-item"><a href="{%url 'desk_list_url'%}" >Desks</a></li>
+                    <li class="breadcrumb-item"><a href="{%url 'ligthing_list_url'%}" >Lighting</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <section class="latest-products spad">
         <div class="container">
             <div class="row" id="product-list">
@@ -36,35 +77,8 @@
                     </div>
                 </div>{%endfor%}
         </div>
-<br><br><br><br>
-        <div class="features-ads">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="single-features-ads first">
-                            <img src="{% static 'images/f-delivery.png'%}" alt="">
-                            <h4>Cash on delivary</h4>
-                            <p>Payment procedure is throguht cash on delivery </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="single-features-ads second">
-                            <img src="{% static 'images/coin.png'%}" alt="">
-                            <h4>100% Money back </h4>
-                            <p>If you want to return products , you can do it easily 
-                               only a press . </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="single-features-ads">
-                            <img src="{% static 'images/chat.png'%}" alt="">
-                            <h4>Online support 24/7</h4>
-                            <p>We are here 24 hours, 7 days a week to serve you , contact us any time. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<br><br>
+     
     </section>
     <!-- Lookbok Section Begin -->
    

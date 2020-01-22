@@ -79,7 +79,7 @@ urlpatterns =[
     path('our_services',views.ServicesListView.as_view(),name="services_url"),
     
 
-    path('t',views.test,name='test_url'),
+    path('track',views.track,name='track_url'),
     path('pp',views.testproductpage,name="pp_url"),
 
 

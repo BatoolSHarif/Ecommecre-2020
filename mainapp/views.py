@@ -12,9 +12,12 @@ from django.db.models import Q
 
 
 
-def test(request):
+
+
+def track(request):
     context = {}
-    return render (request,'test.html',context)  
+    context['order_num'] = OrderModel.objects.filter(user=request.user)
+    return render (request,'track_order.html',context)  
 
 def testproductpage(request):
     context = {}

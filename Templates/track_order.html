@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<center>
+<table class="table table-hover " style=" color: teal; width: 900px;">
+    <caption><h1><span style="font-size: 30px; border: black;" class="icon-list"></span> &nbsp;Orderes Tracking Table</h1></caption>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>  
+        <th scope="col" ><b>Ordered</b></th>
+        <th scope="col"><b>Packiging </b></th>
+        <th scope="col"><b>Being Deliverd</b></th>
+        <th scope="col"><b>Delivery Company </b></th>
+        <th scope="col"><b>Received</b></th>
+
+
+      </tr>
+    </thead>
+    <tbody>      
+      {% for order_num in order_num%}
+  
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        
+        {%if order_num.ordered%}
+        <td>Ordered</td>
+        {%else%}
+        <td>Not Ordered</td>
+        {% endif %}
+
+        {%if order_num.ordered%}
+        <td style='background-color: green;'> </td>
+        {%else%}
+        <td style='background-color: #B50F16;'> </td>
+        {% endif %}
+
+        {% if order_num.being_deliverd  %}
+          <td style='background-color: green;'> </td>
+        {%else%}
+          <td style='background-color: #B50F16;'> </td>
+          
+        {% endif %}
+        {%if order_num.ordered%}
+        <td>Aramex</td> 
+        {%else%}
+        <td>-</td>
+        {% endif %}
+        {%if order_num.received%}
+        <td>Received</td> 
+        {%else%}
+        <td>On its way</td>
+        {% endif %}
+        <br>
+     {%endfor%}
+     
+     </tr>  
+    
+  
+     
+    </tbody>
+    
+  </table>
+  </center>
+  {%endblock%}

@@ -3,14 +3,13 @@
 {% load static %}
 
 
-<div class="single-product-area section-padding-100 clearfix">
   <div class="container-fluid">
 
       <div class="row">
           <div class="col-12">
               <nav aria-label="breadcrumb">
                   <ol class="breadcrumb mt-50">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item"><a href="{%url 'item-list-url'%}">Home</a></li>
                       <li class="breadcrumb-item"><a >Categories</a></li>
                       <li class="breadcrumb-item"><a href="{%url 'bed_list_url'%}" >{{object.get_catigory_display}}</a></li>
                       <li class="breadcrumb-item active" aria-current="page">{{object.title}}</li>
@@ -21,17 +20,12 @@
 
       <div class="row">
           <div class="col-12 col-lg-7">
-              <div class="single_product_thumb">
-                  <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                       <div class="carousel-inner">
                           <div class="carousel-item active">
-                              <a class="gallery_img" href="{{ object.image.url }}">
                                  <center> <img class="d-block w-" src="{{ object.image.url }}" alt="First slide"></center>
                               </a>
                           </div>
-                      </div>
                   </div>
-              </div>
           </div>
           <div class="col-12 col-lg-5">
               <div class="single_product_desc">
@@ -51,6 +45,11 @@
                       <p>{{object.descrption}}</p>
                       
                   </div>
+                  <div>
+                    <a href="{%url 'comment-url'%}">Click to Add Comment</a>
+                  </div>
+                  <br>
+                  <div>
                       <meta charset="utf-8">
                       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,7 +70,7 @@
                       <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
                       <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"  style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
                       <br/>
-                      </body>
+                      </body></div>
                       <script>
                       var count;
                       function starmark(item)
@@ -117,10 +116,40 @@
                    <h6><b>Remove from Cart</b></h6> 
                     </button>
                    </form> </div>
-                  
+                   
               </div>
+          </div>
+          
+
+          <div class="container">
+              <br><br><br><br><br>
+            <h2>Comments Table</h2>
+            <table class="table">
+                
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>Email</th>          
+                  <th>comment</th>
+                  <th>date</th>
+                </tr>
+              </thead>
+              <tbody>{%for c in comment%}
+                <tr>
+                  <td>{{c.name}}</td>
+                  <td>{{c.email}}</td>
+                  <td>{{c.body}}</td>
+                  <td>{{c.created_on}}</td>
+                </tr>
+        
+            {%endfor%}
+              </tbody>
+              
+            </table>
           </div>
       </div>
   </div>
-</div>
+<br><br><br><br><br><br><br>
+
+
 {%endblock%}
