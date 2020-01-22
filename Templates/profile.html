@@ -60,14 +60,12 @@
           <form action="#" method="post">
             <div class="form-group row">
               <div class="col-md-6 mb-4 mb-lg-0">
-                <input type="text" class="form-control" placeholder="Order Number">
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12 mr-auto">
-                  <input class="btn btn-lg btn-primary btn-block" type="submit" value="Track Order">
-                </div></div>
-                
-            </div>
+              </div></div>
+
+            <div class="form-group row">
+              <div class="col-md-9 mr-auto">
+          <a class="btn btn-lg btn-primary btn-block" href="{% url 'track_url' %}" role="button">Track Your Orders</a>
+        </div></div>
             <div class="form-group row">
                 <div class="col-md-9 mr-auto">
             <a class="btn btn-lg btn-primary btn-block" href="{% url 'refund_req_url' %}" role="button">Refund Request</a>
