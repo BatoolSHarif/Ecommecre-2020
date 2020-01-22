@@ -182,9 +182,9 @@ class Tag(models.Model):
 
 class ProductTags(models.Model):
     tag_name = models.ManyToManyField(to='Tag')
-    tag_product = models.ForeignKey(to='ItemModel', on_delete=models.CASCADE, null=True, blank=True, unique=True)
-    def __str__(self):
-        return  self.tag_product
+    tag_product = models.OneToOneField(primary_key = True,to="ItemModel",on_delete=models.CASCADE)
+    # def __str__(self):
+    #     return  self.tag_product
 
 
 # class product(models.Model):
