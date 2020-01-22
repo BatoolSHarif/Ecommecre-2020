@@ -11,7 +11,7 @@
               <nav aria-label="breadcrumb">
                   <ol class="breadcrumb mt-50">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item"><a >Catigories</a></li>
+                      <li class="breadcrumb-item"><a >Categories</a></li>
                       <li class="breadcrumb-item"><a href="{%url 'bed_list_url'%}" >{{object.get_catigory_display}}</a></li>
                       <li class="breadcrumb-item active" aria-current="page">{{object.title}}</li>
                   </ol>
@@ -38,8 +38,9 @@
                   <!-- Product Meta Data -->
                   <div class="product-meta-data">
                       <div class="line"></div>
+                      <h3>Title : {{object.title}}</h3>
                       <p class="product-price">Price : {{object.price}} JD</p>
-                          <h6>Title : {{object.title}}</h6>
+                          
                       </a>
                       <p class="avaibility"><i style="color: green;" class="fa fa-circle"></i> In Stock</p>
 <!-- Ratings & Review -->
@@ -104,7 +105,7 @@
                   <form method="POST" action="{{object.get_add_to_cart_url}}" class="d-flex justify-content-left">
                     {%csrf_token%}
                     {{form.as_p}}
-                  <button href="{{object.get_add_to_cart_url}}" class="btn btn-md my-0 p" style="background-color: teal;">
+                  <button href="{{object.get_add_to_cart_url}}" class="btn btn-primary my-0 p">
                  <h6><b>Add To Cart</b></h6> 
                   </button>  
                   </form>

@@ -1,140 +1,76 @@
-{% extends 'base.html'%}
+{%extends 'base.html'%}
 {%block content%}
 {%load static%}
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  
-  <div class="site-wrap my-0" id="home-section">
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+    <!-- Features Section Begin -->
+    <section class="hero-slider"> 
+        <div class="row">
+        <div class="text-center" style="background-image: url(static/images/bk.jpg); width: 100%; height: 500px; ">
+        <br><br><br><br><br><br><br>
+        <h1><p style="color: black;">Welcome to Our Shop.</p></h1>
+        <h4><p style="color: black;">*Free delivary on orders over 100JOD</p></h4>
+         </div>
         </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div></div>
+ 
+    <!-- Features Section End -->
 
-    <div class="owl-carousel owl-1">
-      <div class="ftco-blocks-cover-1">
-        <div class="ftco-cover-1" style="background-image: url(static/images/hero_1.png);">
+    <!-- Latest Product Begin -->
+    <br><br><br><br>
+    <section class="latest-products spad">
+        <div class="container">
+            <div class="row" id="product-list">
+              {% for item in object_list %}
+                <div class="col-lg-3 col-sm-6 mix all dresses bags">
+                  
+                    <div class="single-product-item">
+                            
+                            <a href="#"><img src="{{item.image.url}}" alt=""></a>
+                        <div class="product-text">
+                            <a href="#"><p>{{item.get_catigory_display}}-{{item.get_item_type_display}}</p></a>
+                            <a href="{{item.get_absolute_url}}">{{item.title}}</a>
+                            <a href="{{item.get_absolute_url}}">{{item.price}}JOD</a>
+                            <br>
+                            <button class="btn btn-primary"  type="button"><a href="{{item.get_absolute_url}}" style="color: white;">Add to Cart</a></button>
+
+                        </div>
+                    </div>
+                </div>{%endfor%}
+        </div>
+<br><br><br><br>
+        <div class="features-ads">
             <div class="container">
-              <div class="row align-items-center justify-content-center">
-                <div class="col-lg-6 text-center div2">
-                  <p><h1>Welcome to </h1></p>
-                     <p><h1>Lavnder Shop </h1></p>
-                  <p class="vl"></p>
-                  <p>A GOOD home must be made not BOUGHT</p>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-features-ads first">
+                            <img src="{% static 'images/f-delivery.png'%}" alt="">
+                            <h4>Cash on delivary</h4>
+                            <p>Payment procedure is throguht cash on delivery </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-features-ads second">
+                            <img src="{% static 'images/coin.png'%}" alt="">
+                            <h4>100% Money back </h4>
+                            <p>If you want to return products , you can do it easily 
+                               only a press . </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-features-ads">
+                            <img src="{% static 'images/chat.png'%}" alt="">
+                            <h4>Online support 24/7</h4>
+                            <p>We are here 24 hours, 7 days a week to serve you , contact us any time. </p>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
-      </div>
-      <div class="ftco-blocks-cover-1">
-        <div class="ftco-cover-1" style="background-image: url(static/images/bk.jpg);">
-          <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-6 text-center div2">
-                    <h1> <p style="background-color:white; ">The KEY to life was</p></h1>
-                    <h1><p style="background-color:teal; color:white;">Rearranging the Furntiure</p></h1>
-    
-                  <p class="vl"></p>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-      <div class="ftco-blocks-cover-1">
-        <div class="ftco-cover-1" style="background-image: url(static/images/hero_3.jpg);">
-          <div class="container">
-            <div class="row align-items-center justify-content-center">
-              <div class="col-lg-6 text-center div2">
-               <h1> <p style="background-color:white;">The Best Furntiure Design</p></h1>
-                <h3><p style="background-color:teal; color:white;">Only in LAVNDER Shop</p></h3>
-                <p class="vl"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
+    <!-- Lookbok Section Begin -->
+   
+    <!-- Lookbok Section End -->
 
-    
-  <div class="site-wrap" id="home-section">
-
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-
-
-  
 </body>
 
-<div class="site-section">
-<div class="container">
-
-
-<div class="row">
-    {% for item in object_list %}
-    <div class="col-lg-3" data-aos="fade-up" data-aos-delay="">
-      
-      <div class="media-92812">
-        <img src="{{item.image.url}}" alt="Image" class="img-fluid">
-        <div class="text">
-          <span class="caption"><h5>{{item.get_catigory_display}}-{{item.get_item_type_display}}</h5></span>
-          <h5><a href="{{item.get_absolute_url}}">{{item.title}}</a></h5>
-          <h5><a href="{{item.get_absolute_url}}">{{item.price}}JOD</a></h5>
-          <button class="btn btn-primary" style="background-color:teal;" type="button"><a href="{{item.get_absolute_url}}" style="color: white;">Add to Cart >>></a></button>
-
-          
-         
-
-          </div>
-      </div>
-
-    </div>
-    {%endfor%}
-</div>
-
-
-
-    <!--Pagination-->
-   
-    <!--Pagination-->
-
-  </div>
-</main>
-<!--Main layout-->
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>
 {%endblock%}
-
-
-
-
-
-PRODUCT CARD 
-<div class="card-product__img">
-  <a href="/health-gadgets/product/15">
-  <img alt="ProForm Cardio HIIT Elliptical Trainer Digital Runner " class="card-img" src="/content/images/c04b8ba3-8859-4438-9d23-70b379485c77.jpg" style="">
-  </a>
-  <ul class="card-product__imgOverlay">
-  <li><button class="link-button" data-href="/health-gadgets/product/15"><i class="fas fa-link"></i></button></li>
-  <li><button class="btnAddToCart" data-id="15"><i class="fas fa-shopping-cart"></i></button></li>
-  </ul>
-  </div>

@@ -12,7 +12,13 @@ from django.db.models import Q
 
 
 
+def test(request):
+    context = {}
+    return render (request,'test.html',context)  
 
+def testproductpage(request):
+    context = {}
+    return render (request,'product-pageTest.html',context)  
 
 def CreateOrderNumber():
     return ''.join(random.choices(string.ascii_lowercase+string.digits,k=20))
@@ -187,7 +193,7 @@ def remove_from_cart(request, pk):
 
                 else:
                     messages.info(request,"This item is not in your cart")
-                    return redirect('summary-url',pk=pk)
+                    return redirect('summary-url')
             else:
                 #add a message that the user dosent have order
                 messages.info(request,"you dont have an active order")

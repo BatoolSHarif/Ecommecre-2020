@@ -79,6 +79,9 @@ urlpatterns =[
     path('our_services',views.ServicesListView.as_view(),name="services_url"),
     
 
+    path('t',views.test,name='test_url'),
+    path('pp',views.testproductpage,name="pp_url"),
+
 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

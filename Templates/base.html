@@ -60,7 +60,7 @@ margin-top: -1px;
             <div class="col-lg-0">
               <nav class="site-navigation text-right ml-auto " role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li class="active"><a href="{% url 'item-list-url'%}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Home page"><span class="icon-home">&nbsp;</span>Home</a></li>
+                  <li class="active"><a href="{% url 'item-list-url'%}" class="nav-link style='color:blue'" data-toggle="tooltip" data-placement="top" title="Home page"><span class="icon-home">&nbsp;</span>Home</a></li>
                   <li><a href="{% url 'checkout-url'%}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Checkout page"><span class="icon-money">&nbsp;</span>Checkout</a></li>
                   {% if user.is_authenticated %}
                   <li><a href="{% url 'summary-url' %}"  class="nav-link" data-toggle="tooltip" data-placement="top" title="Cart page">
@@ -75,7 +75,7 @@ margin-top: -1px;
                   
                   {% endif %}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <li class="site-logo" style="color: teal; font-size:20px;" data-toggle="tooltip" data-placement="top" title="Our Lovely Store" ><img width=50px src="{% static 'images/lavender22222.jpg' %}">Lavender Shop</li>
+              <li class="site-logo" style="color: black; font-size:20px;" data-toggle="tooltip" data-placement="top" title="Our Lovely Store" ><img width=50px src="{% static 'images/lavender22222.jpg' %}">Lavender Shop</li>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <li><a class="nav-link">Hi {{request.user.username}} !</a></li>
 
@@ -100,12 +100,12 @@ margin-top: -1px;
           
         
           <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" style="background-color:teal;" type="button" data-toggle="dropdown" data-toggle="tooltip" data-placement="top" title="Products">Catigores
+            <button class="btn btn-primary dropdown-toggle" style="color:white;" type="button" data-toggle="dropdown" data-toggle="tooltip" data-placement="top" title="Products">Catigores
             <span ></span></button>
             <ul class="dropdown-menu">
-              <li> <a class="test" tabindex="-1" href="{% url 'bed_list_url'%}"style="color:teal;" data-toggle="tooltip" data-placement="top" title="Beds page">Beds <span class="caret"></span></a></li>
-              <li><a class="test" tabindex="-1" href="{% url 'desk_list_url'%}"style="color:teal;"data-toggle="tooltip" data-placement="top" title="Desks page">Desks <span class="caret"></span></a></li>
-              <li><a class="test" tabindex="-1" href="{% url 'ligthing_list_url'%}"style="color:teal;" data-toggle="tooltip" data-placement="top" title="Lamps page">Lamps <span class="caret"></span></a></li>
+              <li> <a class="test" tabindex="-1" href="{% url 'bed_list_url'%}"style="color:rgb(2, 150, 248);" data-toggle="tooltip" data-placement="top" title="Beds page">Beds <span class="caret"></span></a></li>
+              <li><a class="test" tabindex="-1" href="{% url 'desk_list_url'%}"style="color:rgb(2, 150, 248);"data-toggle="tooltip" data-placement="top" title="Desks page">Desks <span class="caret"></span></a></li>
+              <li><a class="test" tabindex="-1" href="{% url 'ligthing_list_url'%}"style="color:rgb(2, 150, 248);" data-toggle="tooltip" data-placement="top" title="Lamps page">Lamps <span class="caret"></span></a></li>
 
               </li>
                 </ul>
@@ -114,7 +114,10 @@ margin-top: -1px;
 <form action='{% url "prodct_catigory_url" %}' method='get'>
 <input class="form-control mx-auto" name='q' type="text" placeholder="Search" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Search for product">
 
-     </form> </div>
+     </form> 
+     
+    </div>
+
 
 <script>
 $(document).ready(function(){
@@ -125,7 +128,6 @@ $(document).ready(function(){
   });
 });
 </script>
-
 
 </div></div></div>
 
@@ -162,7 +164,7 @@ $(document).ready(function(){
       
     <!-- footer -->
     <footer class="site-footer">
-      <div class="container">
+      <div class="container" style="background-color:whitesmoke;">
         <div class="row">
           <div class="col-md-6">
             <div class="row">
